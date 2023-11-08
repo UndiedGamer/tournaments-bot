@@ -11,9 +11,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  PublishDragonite:
+  PublicTournaments:
     name: Publish tournament image to container registries
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3
