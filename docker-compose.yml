@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  tourney-bot:
+    build:
+      context: .
+      target: development
+    env_file: .env.production
+    image: tourney-bot:latest
+    volumes:
+      - ./:/opt/app
+    networks:
+      - tourney
+networks:
+  tourney:
