@@ -24,11 +24,11 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.DOCKER_PASS }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push tournament Docker image
         uses: docker/build-push-action@v3.2.0
         with:
           push: true
           context: ./
           file: Dockerfile
-          tags: ghcr.io/undiedgamer/tournament:latest
+          tags: ghcr.io/UndiedGamer/tournament:latest
