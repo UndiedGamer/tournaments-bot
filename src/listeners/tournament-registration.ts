@@ -11,7 +11,7 @@ export class UserEvent extends Listener {
 	public async run(message: Message) {
 		if (message.channel.isDMBased()) return;
 		if (!message.guild) return;
-		if (message.channel.id !== '1171732955736064060') return;
+		if (message.channel.id !== '1172531531902877698') return;
 		if (!message.attachments.size) return message.delete();
 		const mapped = message.attachments
 			.map((attachment) => {
@@ -33,7 +33,7 @@ export class UserEvent extends Listener {
 		await signUser(message.member!.user.displayName);
 		await message.member?.dmChannel?.send('You have successfully registered in tournament!');
 
-		if (messages.size === 64) {
+		if (messages.size === 32) {
 			await message.channel.send('Thank you everyone for registering! The tournament managers will get back to you soon with the fictures.');
 			return message.channel.edit({
 				permissionOverwrites: [
