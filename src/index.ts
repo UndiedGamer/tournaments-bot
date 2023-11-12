@@ -11,5 +11,4 @@ const client = new SapphireClient({
 	intents: [GatewayIntentBits.Guilds]
 });
 
-client.logger.info('Logging in');
 void client.login(process.env.DISCORD_TOKEN);
