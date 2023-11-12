@@ -1,26 +1,58 @@
-import { fetch } from '@sapphire/fetch';
-import type { Show, Index } from './typings';
+import type { Index, Show } from '#lib/typings';
+import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, fetch } from '@sapphire/fetch';
+import { envParseString } from '@skyra/env-utilities';
 
 const baseUrl = `https://api.challonge.com/v1/`;
 
 export async function getTournament(tournamentId: number) {
-	const data = await fetch<Show>(`${baseUrl}tournaments/${tournamentId}.json?api_key=${process.env.CHALLONGE_KEY}`, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
-	});
+	const url = new URL(`${baseUrl}tournaments/${tournamentId}.json`);
+	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+
+	const data = await fetch<Show>(
+		url,
+		{
+			method: FetchMethods.Get,
+			headers: {
+				'Content-Type': FetchMediaContentTypes.JSON
+			}
+		},
+		FetchResultTypes.JSON
+	);
+
 	return data;
 }
 
 export async function getAll() {
-	const data = await fetch<Index>(`${baseUrl}tournaments.json?api_key=${process.env.CHALLONGE_KEY}`, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
-	});
+	const url = new URL(`${baseUrl}tournaments.json`);
+	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+
+	const data = await fetch<Index>(
+		url,
+		{
+			method: FetchMethods.Get,
+			headers: {
+				'Content-Type': FetchMediaContentTypes.JSON
+			}
+		},
+		FetchResultTypes.JSON
+	);
+
 	return data;
 }
 
 export async function signUser(name: string) {
-	await fetch(`${baseUrl}tournaments/13697686/participants.json?api_key=${process.env.CHALLONGE_KEY}&participant[name]=${name}`, {
-		method: 'POST'
-	});
+	const url = new URL(`${baseUrl}tournaments/13697686/participants.json`);
+	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+	url.searchParams.append('participant[name]', name);
+
+	await fetch(
+		url,
+		{
+			method: FetchMethods.Post,
+			headers: {
+				'Content-Type': FetchMediaContentTypes.JSON
+			}
+		},
+		FetchResultTypes.Result
+	);
 }

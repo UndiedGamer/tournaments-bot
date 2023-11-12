@@ -14,8 +14,7 @@ jobs:
   PublicTournaments:
     name: Publish tournament image to container registries
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
+    if: github.repository_owner == 'undiedgamer'
     steps:
       - name: Checkout Project
         uses: actions/checkout@v3

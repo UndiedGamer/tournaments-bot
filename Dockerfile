@@ -2,19 +2,14 @@
 #    Base Stage    #
 # ================ #
 
-FROM node:20-bullseye-slim as base
+FROM node:20-alpine as base
 
 WORKDIR /usr/src/app
 
 ENV CI=true
 ENV FORCE_COLOR=true
 
-RUN apt-get update && \
-    apt-get upgrade -y --no-install-recommends && \
-    apt-get install -y --no-install-recommends build-essential python3 dumb-init && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get autoremove
+RUN apk add --no-cache dumb-init
 
 COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
@@ -47,7 +42,7 @@ FROM base AS runner
 ENV NODE_ENV="production"
 ENV NODE_OPTIONS="--enable-source-maps"
 
-COPY --chown=node:node src/.env src/.env
+COPY --chown=node:node .env .env
 COPY --chown=node:node --from=builder /usr/src/app/dist dist
 
 RUN yarn workspaces focus --all --production
