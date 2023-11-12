@@ -37,7 +37,7 @@ export class UserCommand extends Command {
 		await signUser(interaction.user.displayName, interaction.user.id);
 
 		return interaction.editReply({
-			content: `${userMention(interaction.user.id)} has successfully registered in tournament, here is their team logo:`,
+			content: `${userMention(interaction.user.id)} has successfully registered in tournament, here is their squad:`,
 			files: [attachments]
 		});
 	}
