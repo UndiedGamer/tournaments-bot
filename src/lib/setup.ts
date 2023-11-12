@@ -2,21 +2,24 @@
 process.env.NODE_ENV ??= 'development';
 
 import { ApplicationCommandRegistries, RegisterBehavior } from '@sapphire/framework';
-import '@sapphire/plugin-api/register';
-import '@sapphire/plugin-editable-commands/register';
 import '@sapphire/plugin-logger/register';
-import '@sapphire/plugin-subcommands/register';
 import { setup } from '@skyra/env-utilities';
 import * as colorette from 'colorette';
-import { join } from 'path';
-import { inspect } from 'util';
-import { srcDir } from './constants';
+import { inspect } from 'node:util';
+
+declare module '@skyra/env-utilities' {
+	interface Env {
+		CHALLONGE_TOURNAMENT: string;
+		CHALLONGE_KEY: string;
+		CHANNEL_FILTER: string;
+	}
+}
 
 // Set default behavior to bulk overwrite
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
 // Read env var
-setup({ path: join(srcDir, '.env') });
+setup();
 
 // Set default inspection depth
 inspect.defaultOptions.depth = 1;

@@ -1,26 +1,72 @@
-import { fetch } from '@sapphire/fetch';
-import type { Show, Index } from './typings';
+import type { Index, Participants, Show } from '#lib/typings';
+import { FetchMediaContentTypes, FetchMethods, FetchResultTypes, fetch } from '@sapphire/fetch';
+import { envParseString } from '@skyra/env-utilities';
 
 const baseUrl = `https://api.challonge.com/v1/`;
+const headers = new Headers({
+	'Content-Type': FetchMediaContentTypes.JSON
+});
 
-export async function getTournament(tournamentId: number) {
-	const data = await fetch<Show>(`${baseUrl}tournaments/${tournamentId}.json?api_key=${process.env.CHALLONGE_KEY}`, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
-	});
+export async function getTournament() {
+	const url = new URL(`${baseUrl}tournaments/${envParseString('CHALLONGE_TOURNAMENT')}.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
+
+	const data = await fetch<Show>(
+		url,
+		{
+			method: FetchMethods.Get,
+			headers
+		},
+		FetchResultTypes.JSON
+	);
+
 	return data;
 }
 
 export async function getAll() {
-	const data = await fetch<Index>(`${baseUrl}tournaments.json?api_key=${process.env.CHALLONGE_KEY}`, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json' }
-	});
+	const url = new URL(`${baseUrl}tournaments.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
+
+	const data = await fetch<Index>(
+		url,
+		{
+			method: FetchMethods.Get,
+			headers
+		},
+		FetchResultTypes.JSON
+	);
+
 	return data;
 }
 
-export async function signUser(name: string) {
-	await fetch(`${baseUrl}tournaments/13697686/participants.json?api_key=${process.env.CHALLONGE_KEY}&participant[name]=${name}`, {
-		method: 'POST'
-	});
+export async function signUser(name: string, userId: string) {
+	const url = new URL(`${baseUrl}tournaments/${envParseString('CHALLONGE_TOURNAMENT')}/participants.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
+	url.searchParams.append('participant[name]', name);
+	url.searchParams.append('participant[misc]', userId);
+
+	await fetch(
+		url,
+		{
+			method: FetchMethods.Post,
+			headers
+		},
+		FetchResultTypes.Result
+	);
+}
+
+export async function getParticipants() {
+	const url = new URL(`${baseUrl}tournaments/${envParseString('CHALLONGE_TOURNAMENT')}/participants.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
+
+	const data = await fetch<Participants[]>(
+		url,
+		{
+			method: FetchMethods.Get,
+			headers
+		},
+		FetchResultTypes.JSON
+	);
+
+	return data;
 }

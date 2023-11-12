@@ -14,6 +14,7 @@ jobs:
   PublicTournaments:
     name: Publish tournament image to container registries
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'undiedgamer'
     permissions:
       packages: write
     steps:
