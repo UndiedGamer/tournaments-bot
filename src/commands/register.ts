@@ -1,7 +1,7 @@
 import { signUser } from '#lib/api-functions';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, UserError } from '@sapphire/framework';
-import { ChannelType } from 'discord.js';
+import { ChannelType, userMention } from 'discord.js';
 
 @ApplyOptions<Command.Options>({
 	description: 'Register yourself for the tournament',
@@ -24,7 +24,7 @@ export class UserCommand extends Command {
 	}
 
 	public override async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply();
 
 		const attachments = interaction.options.getAttachment('attachment', true);
 		if (attachments.contentType !== 'image/jpeg' && attachments.contentType !== 'image/png') {
@@ -37,7 +37,8 @@ export class UserCommand extends Command {
 		await signUser(interaction.user.displayName, interaction.user.id);
 
 		return interaction.editReply({
-			content: 'You have successfully registered in tournament!'
+			content: `${userMention(interaction.user.id)} has successfully registered in tournament, here is their team logo:`,
+			files: [attachments]
 		});
 	}
 }
