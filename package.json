@@ -17,11 +17,8 @@
 		"@sapphire/plugin-logger": "^3.0.6",
 		"@sapphire/utilities": "^3.13.0",
 		"@skyra/env-utilities": "^1.2.1",
-		"bufferutil": "^4.0.8",
 		"discord.js": "^14.13.0",
-		"utf-8-validate": "^6.0.3",
-		"ws": "^8.14.2",
-		"zlib-sync": "^0.1.9"
+		"ws": "^8.14.2"
 	},
 	"devDependencies": {
 		"@sapphire/cli": "^1.6.1",

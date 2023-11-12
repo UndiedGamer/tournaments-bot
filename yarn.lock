@@ -1020,16 +1020,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bufferutil@npm:^4.0.8":
-  version: 4.0.8
-  resolution: "bufferutil@npm:4.0.8"
-  dependencies:
-    node-gyp: "npm:latest"
-    node-gyp-build: "npm:^4.3.0"
-  checksum: 36cdc5b53a38d9f61f89fdbe62029a2ebcd020599862253fefebe31566155726df9ff961f41b8c97b02b4c12b391ef97faf94e2383392654cf8f0ed68f76e47c
-  languageName: node
-  linkType: hard
-
 "bundle-name@npm:^3.0.0":
   version: 3.0.0
   resolution: "bundle-name@npm:3.0.0"
@@ -2521,15 +2511,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nan@npm:^2.18.0":
-  version: 2.18.0
-  resolution: "nan@npm:2.18.0"
-  dependencies:
-    node-gyp: "npm:latest"
-  checksum: 9209d80134fdb98c0afe35c1372d2b930a0a8d3c52706cb5e4257a27e9845c375f7a8daedadadec8d6403ca2eebb3b37d362ff5d1ec03249462abf65fef2a148
-  languageName: node
-  linkType: hard
-
 "natural-compare@npm:^1.4.0":
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
@@ -2555,17 +2536,6 @@ __metadata:
     encoding:
       optional: true
   checksum: b55786b6028208e6fbe594ccccc213cab67a72899c9234eb59dba51062a299ea853210fcf526998eaa2867b0963ad72338824450905679ff0fa304b8c5093ae8
-  languageName: node
-  linkType: hard
-
-"node-gyp-build@npm:^4.3.0":
-  version: 4.6.1
-  resolution: "node-gyp-build@npm:4.6.1"
-  bin:
-    node-gyp-build: bin.js
-    node-gyp-build-optional: optional.js
-    node-gyp-build-test: build-test.js
-  checksum: bd7738c96608c1fa056344623b93d4bbdc63fec05862061e5489284639e3a53daa407b9158c45bfc2e33d0b419851ed5c1f03f4c9ba34726361e2a7b765c0ddc
   languageName: node
   linkType: hard
 
@@ -3276,15 +3246,12 @@ __metadata:
     "@skyra/env-utilities": "npm:^1.2.1"
     "@types/node": "npm:^20.9.0"
     "@types/ws": "npm:^8.5.9"
-    bufferutil: "npm:^4.0.8"
     discord.js: "npm:^14.13.0"
     eslint: "npm:^8.53.0"
     prettier: "npm:^3.0.3"
     tsup: "npm:^7.2.0"
     typescript: "npm:^5.2.2"
-    utf-8-validate: "npm:^6.0.3"
     ws: "npm:^8.14.2"
-    zlib-sync: "npm:^0.1.9"
   languageName: unknown
   linkType: soft
 
@@ -3465,16 +3432,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utf-8-validate@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "utf-8-validate@npm:6.0.3"
-  dependencies:
-    node-gyp: "npm:latest"
-    node-gyp-build: "npm:^4.3.0"
-  checksum: 2ca08b07f4070540b33ff15f3f0632fa30baaee8a766fff993be47b4829b4fb30fd36fdf1270336324d03f65e0936c4608ee719d862230d75311751dcfe27a83
-  languageName: node
-  linkType: hard
-
 "util-deprecate@npm:^1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -3599,15 +3556,5 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
-  languageName: node
-  linkType: hard
-
-"zlib-sync@npm:^0.1.9":
-  version: 0.1.9
-  resolution: "zlib-sync@npm:0.1.9"
-  dependencies:
-    nan: "npm:^2.18.0"
-    node-gyp: "npm:latest"
-  checksum: 1c05fdc5140f4c9afb931bfca01fc9f26ddfe242eb5c8c06ffc93b53d5103f0a99e8b8048697446001eb4a92c12febd270bcb4cda3fa3de9bf822e6ba0664902
   languageName: node
   linkType: hard
