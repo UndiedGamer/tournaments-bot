@@ -1,4 +1,3 @@
-import { alreadyRegisteredUsers } from '#lib/already-registered-users-storage';
 import { signUser } from '#lib/api-functions';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, UserError } from '@sapphire/framework';
@@ -7,7 +6,7 @@ import { ChannelType } from 'discord.js';
 @ApplyOptions<Command.Options>({
 	description: 'Register yourself for the tournament',
 	runIn: ChannelType.GuildText,
-	preconditions: ['MaxUsersFilter', 'ChannelFilter']
+	preconditions: ['ChannelFilter', 'MaxUsersFilter', 'AlreadyRegistered']
 })
 export class UserCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
@@ -35,14 +34,7 @@ export class UserCommand extends Command {
 			});
 		}
 
-		if (alreadyRegisteredUsers.has(interaction.user.id)) {
-			throw new UserError({
-				identifier: 'AlreadyRegistered',
-				message: 'You already registered for the tournament!'
-			});
-		}
-
-		await signUser(interaction.user.displayName);
+		await signUser(interaction.user.displayName, interaction.user.id);
 
 		return interaction.editReply({
 			content: 'You have successfully registered in tournament!'
