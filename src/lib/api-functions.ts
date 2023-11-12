@@ -4,9 +4,9 @@ import { envParseString } from '@skyra/env-utilities';
 
 const baseUrl = `https://api.challonge.com/v1/`;
 
-export async function getTournament(tournamentId: number) {
-	const url = new URL(`${baseUrl}tournaments/${tournamentId}.json`);
-	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+export async function getTournament() {
+	const url = new URL(`${baseUrl}tournaments/${envParseString('CHALLONGE_TOURNAMENT')}.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
 
 	const data = await fetch<Show>(
 		url,
@@ -24,7 +24,7 @@ export async function getTournament(tournamentId: number) {
 
 export async function getAll() {
 	const url = new URL(`${baseUrl}tournaments.json`);
-	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
 
 	const data = await fetch<Index>(
 		url,
@@ -41,8 +41,8 @@ export async function getAll() {
 }
 
 export async function signUser(name: string) {
-	const url = new URL(`${baseUrl}tournaments/13697686/participants.json`);
-	url.searchParams.append('api-key', envParseString('CHALLONGE_KEY'));
+	const url = new URL(`${baseUrl}tournaments/${envParseString('CHALLONGE_TOURNAMENT')}/participants.json`);
+	url.searchParams.append('api_key', envParseString('CHALLONGE_KEY'));
 	url.searchParams.append('participant[name]', name);
 
 	await fetch(

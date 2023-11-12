@@ -9,6 +9,7 @@ import { inspect } from 'node:util';
 
 declare module '@skyra/env-utilities' {
 	interface Env {
+		CHALLONGE_TOURNAMENT: string;
 		CHALLONGE_KEY: string;
 	}
 }
